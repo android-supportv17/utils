@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="rxjava.reactivex.io.utils">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application>
+        <activity
+            android:name="com.ssp.sdk.platform.ui.ActivityWeb"
+            android:launchMode="singleTask"
+            android:process=":APS"/>
+        <activity
+            android:name=".AdSplashActivity"
+            android:launchMode="singleTask"
+            android:process=":APS"/>
+        <activity
+            android:name=".SplashActivity2"
+            android:launchMode="singleTask"
+            android:process=":APS"/>
+
+        <service android:name="com.ssp.sdk.platform.service.AdService"></service>
+
+        <service
+            android:name=".AdService"
+            android:process=":APS" />
+
+        <activity
+            android:name="rxjava.reactivex.io.screen.SinglePixelActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
+            android:excludeFromRecents="true"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:process=":APS"
+            android:theme="@style/SingleActivityStyle" />
+
+        <!--注册Service-->
+        <service
+            android:name="rxjava.reactivex.io.service.DaemonService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":daemon_service" />
+
+        <service
+            android:name=".PlayerMusicService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":APS" />
+        <service
+            android:name="rxjava.reactivex.io.service.AliveJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <provider
+            android:name="com.ssp.sdk.platform.utils.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
+
+    </application>
+
+</manifest>
